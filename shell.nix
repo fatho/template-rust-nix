@@ -1,26 +1,27 @@
 { nixpkgs ? import ./nix/nixpkgs-pinned.nix {
     overlays = [
-      (import ./nix/rust-overlay.nix)
+      (import ./nix/rust-analyzer.nix)
     ];
   }
 }:
-let
-  rustChannel = nixpkgs.rustChannelOf {
-    rustToolchain = ./rust-toolchain;
-  };
-
-  rust = rustChannel.rust.override {
-    # The source component is needed for rust-analyzer
-    extensions = ["rust-src"];
-  };
-in
 nixpkgs.mkShell {
   name = "awesome-rust-app-dev";
-  nativeBuildInputs = [
-    rust
+  nativeBuildInputs = with nixpkgs; [
+    rustc
+    cargo
+    rust-analyzer
+    clippy
+    rustfmt
+    cargo-audit
     # Allows running the update script right from this shell
-    nixpkgs.python3
-    nixpkgs.git
-    nixpkgs.nix
+    python3
+    git
+    nix
   ];
+
+  # Always enable rust backtraces in development shell
+  RUST_BACKTRACE = "1";
+
+  # Provide sources for rust-analyzer, because nixpkgs rustc doesn't include them in the sysroot
+  RUST_SRC_PATH = "${nixpkgs.rustPlatform.rustcSrc}";
 }
