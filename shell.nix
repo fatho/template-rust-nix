@@ -20,5 +20,5 @@ in
     RUST_BACKTRACE = "1";
 
     # Provide sources for rust-analyzer, because nixpkgs rustc doesn't include them in the sysroot
-    RUST_SRC_PATH = "${nixpkgs.rustPlatform.rustcSrc}";
+    RUST_SRC_PATH = "${nixpkgs.rustPlatform.rustLibSrc}";
   }
