@@ -32,27 +32,9 @@ let
             if spec ? tag then "refs/tags/${spec.tag}" else
               abort "In git source '${name}': Please specify `ref`, `tag` or `branch`!";
       submodules = if spec ? submodules then spec.submodules else false;
-      submoduleArg =
-        let
-          nixSupportsSubmodules = builtins.compareVersions builtins.nixVersion "2.4" >= 0;
-          emptyArgWithWarning =
-            if submodules == true
-            then
-              builtins.trace
-                (
-                  "The niv input \"${name}\" uses submodules "
-                  + "but your nix's (${builtins.nixVersion}) builtins.fetchGit "
-                  + "does not support them"
-                )
-                {}
-            else {};
-        in
-          if nixSupportsSubmodules
-          then { inherit submodules; }
-          else emptyArgWithWarning;
     in
-      builtins.fetchGit
-        ({ url = spec.repo; inherit (spec) rev; inherit ref; } // submoduleArg);
+      builtins.fetchGit { url = spec.repo; inherit (spec) rev; inherit ref; }
+      // (if builtins.compareVersions builtins.nixVersion "2.4" >= 0 then { inherit submodules; } else {});
 
   fetch_local = spec: spec.path;
 
