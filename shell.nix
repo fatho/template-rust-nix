@@ -13,13 +13,14 @@ in
       channel.rust
       # Neat helper tools
       cargo-audit
+      cargo-deny
       cargo-edit
       cargo-flamegraph
 
       # Nix tools
       niv
     ];
-    
+
     # Always enable rust backtraces in development shell
     RUST_BACKTRACE = "1";
 
