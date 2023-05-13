@@ -7,7 +7,7 @@ let
   channel = nixpkgs.rustChannelOf { rustToolchain = ./rust-toolchain; };
 in
   nixpkgs.mkShell {
-    name = "auto-dev";
+    name = "rust-dev-shell";
     nativeBuildInputs = with nixpkgs; [
       # Rust core
       channel.rust
