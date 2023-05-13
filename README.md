@@ -26,3 +26,14 @@ libstd sources.
 The nix dependencies are managed using [niv](https://github.com/nmattia/niv).
 Niv is provided via the `shell.nix` environment. In order to get the latest
 snapshot, just run `niv update` inside the nix shell.
+
+## Custom Hotfixes
+
+Currently, the master branch of
+[mozilla/nixpkgs-mozilla](https://github.com/mozilla/nixpkgs-mozilla) seems to be broken in that it
+cannot build the `rust-src` derivation. Therefore, the `nixpkgs-mozilla` reference in
+[`nix/sources.json`](nix/sources.json) currently points to a fork of that repository with a hotfix
+applied that was taken from
+https://github.com/mozilla/nixpkgs-mozilla/issues/304#issuecomment-1416761163 and seems to fix the
+build.
+

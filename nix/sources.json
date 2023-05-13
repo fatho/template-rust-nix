@@ -12,15 +12,15 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs-mozilla": {
-        "branch": "master",
+        "branch": "hotfixes",
         "description": "Mozilla overlay for Nixpkgs.",
         "homepage": "",
-        "owner": "mozilla",
+        "owner": "fatho",
         "repo": "nixpkgs-mozilla",
-        "rev": "0508a66e28a5792fdfb126bbf4dec1029c2509e0",
-        "sha256": "1nswjmya72g0qriidc2pkl54zn5sg0xp36vdq0ylspca56izivxc",
+        "rev": "89bf99854fbf8edf4538449bc9149e119dd341f9",
+        "sha256": "05l8w5xmzfznxhd819piag9iw5d3kgb04i7g7njxj7qb0nsvdxgh",
         "type": "tarball",
-        "url": "https://github.com/mozilla/nixpkgs-mozilla/archive/0508a66e28a5792fdfb126bbf4dec1029c2509e0.tar.gz",
+        "url": "https://github.com/fatho/nixpkgs-mozilla/archive/89bf99854fbf8edf4538449bc9149e119dd341f9.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
